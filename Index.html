@@ -138,6 +138,45 @@
 
     <div class="expense-list" id="expense-list"></div>
 
+    <button class="pdf-btn" onclick="window.print()">Download as PDF</button>
+
+<style>
+    /* Styling for the new button */
+    .pdf-btn {
+        width: 100%;
+        padding: 10px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    /* Print Logic: Hides everything except the total and the list */
+    @media print {
+        body { background: white; padding: 0; }
+        .container { 
+            box-shadow: none; 
+            border: none; 
+            max-width: 100%; 
+            width: 100%; 
+        }
+        /* Hide interactive elements during print */
+        .input-group, .add-btn, .clear-btn, .pdf-btn, .delete-btn {
+            display: none !important;
+        }
+        .expense-list { max-height: none; overflow: visible; }
+        .total-bar { 
+            background: #000 !important; 
+            color: #fff !important; 
+            -webkit-print-color-adjust: exact; 
+        }
+        .entry { border: 1px solid #eee; break-inside: avoid; }
+    }
+</style>
+    
     <button class="clear-btn" onclick="clearAll()">Clear All History</button>
 </div>
 
